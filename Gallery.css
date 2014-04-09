@@ -20,16 +20,50 @@
     border-color: black;
     border-width: 1px;
     padding-bottom: 20%;
-
+    display: inline-block;
+    vertical-align: top;
     width: 20%;
     height: 0;
+    position: relative;
 }
 
 .tall {
-
-    height: 98%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    height: 100%;
 }
 .wide {
+    top: 0;
+    bottom: 0;
+    position: absolute;
+    display: block;
+    margin: auto;
+    width: 100%;
+}
 
-    width: 98%;
+#addPicDialogBox {
+    background-color: white;
+    border-color: black;
+    border: solid;
+
+    width: 30%;
+    margin-left: 35%;
+    margin-right: 35%;
+    margin-top: 20%;
+    padding-left: 5%;
+    padding-right: 5%;
+    padding-bottom: 1%;
+    z-index: 1;
+    position: fixed;
+    visibility: hidden;
+}
+
+#inputUrl {
+    width: 100%;
+}
+
+#addDialogButtons {
+    text-align: right;
+    margin-right: 10%;
 }

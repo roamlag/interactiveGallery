@@ -2,28 +2,63 @@
  * Created by galmaor on 06/04/14.
  */
 
+function addPic(parent, picUrl) {
+    var thePic = document.createElement("img");
+    thePic.setAttribute("src", picUrl);
+    thePic.onload = function () {
+        if (thePic.width >= thePic.height) {
+            thePic.setAttribute("class", "pic wide");
+        }
+        else {
+            thePic.setAttribute("class", "pic tall");
+        }
+    }
+    var container = document.createElement("div");
+    container.setAttribute("class", "piccontainer");
+    container.appendChild(thePic);
+    parent.appendChild(container);
+}
+
+function eventDispatcher(element, eventType) {
+    var dispatcher = {};
+    dispatcher.register = function (filterClass, f) {
+        if (f === undefined) {
+            f = filterClass;
+            filterClass = undefined;
+        }
+        var g = function (e) {
+            if (filterClass === undefined) {
+                f(e);
+                return;
+            }
+            if (!e.target.classList.contains(filterClass)) return;
+            f(e);
+        }
+        element.addEventListener(eventType, g);
+        return this;
+    }
+    return dispatcher;
+}
+
+function makeVisible(element) {
+    element.style.visibility = "visible";
+}
+function hide(element) {
+    element.style.visibility = "hidden";
+}
+
+var addDialog = document.getElementById("addPicDialogBox");
+//makeVisible(addDialog);
+var addButton = document.getElementById("addNewPhoto");
+var urlCancelButton = document.getElementById("cancelUrlAdd");
+eventDispatcher(addButton, "click").register(function () {
+    makeVisible(addDialog);
+});
+eventDispatcher(urlCancelButton, "click").register(function () {
+    hide(addDialog);
+});
+
+
 picsec = document.getElementById("picturesSection");
-var newimg1 = document.createElement("img");
-newimg1.setAttribute("src", "http://www.fontplay.com/freephotos/seventeen/fpx041611-19.jpg");
-if (newimg1.width >= newimg1.height) {
-    newimg1.setAttribute("class", "pic wide");
-}
-else {
-    newimg1.setAttribute("class", "pic tall");
-}
-var newimg2 = document.createElement("img");
-newimg2.setAttribute("src", "http://www.fontplay.com/freephotos/seventeen/fpx012211-01.jpg");
-if (newimg2.width >= newimg2.height) {
-    newimg2.setAttribute("class", "pic wide");
-}
-else {
-    newimg2.setAttribute("class", "pic tall");
-}
-var cntnr1 = document.createElement("div");
-cntnr1.setAttribute("class", "piccontainer");
-cntnr1.appendChild(newimg1);
-picsec.appendChild(cntnr1);
-var cntnr2 = document.createElement("div");
-cntnr2.setAttribute("class", "piccontainer");
-cntnr2.appendChild(newimg2);
-picsec.appendChild(cntnr2);
+addPic(picsec, "http://www.fontplay.com/freephotos/seventeen/fpx041611-19.jpg");
+addPic(picsec, "http://www.fontplay.com/freephotos/seventeen/fpx012211-01.jpg");
