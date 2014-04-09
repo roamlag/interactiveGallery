@@ -1,0 +1,35 @@
+#headerSection {
+    color: black;
+    font-size: 30px;
+}
+#footerSection {
+    text-align: right;
+    margin-right: 10%;
+}
+#gallerySection {
+    width: 80%;
+}
+
+.pic {
+
+}
+
+.piccontainer {
+    margin: 1%;
+    background-color: darkgrey;
+    border-color: black;
+    border-width: 1px;
+    padding-bottom: 20%;
+
+    width: 20%;
+    height: 0;
+}
+
+.tall {
+
+    height: 98%;
+}
+.wide {
+
+    width: 98%;
+}
